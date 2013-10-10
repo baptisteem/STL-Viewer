@@ -2,6 +2,8 @@ with Ada.Numerics.Elementary_Functions;
 use Ada.Numerics.Elementary_Functions;
 with Ada.Text_IO;
 use Ada.Text_IO;
+with Ada.Float_Text_IO;
+use Ada.Float_Text_IO;
 
 package body Scene is
 
@@ -33,9 +35,24 @@ package body Scene is
 		null;
 	end;
 
-	procedure Ajout_Maillage(M : Maillage) is
+	procedure Ajout_Maillage(Ma : Maillage) is
 	begin
 		-- a faire
+		M := Ma;
+		for i in 1..M'Length loop
+		   Put(M(i).P1(1));
+		   Put(M(i).P1(2));	
+		   Put(M(i).P1(3));
+		   Put_Line("");	   
+		   Put(M(i).P2(1));	
+		   Put(M(i).P2(2));	
+		   Put(M(i).P2(3));
+		   Put_Line("");	   
+		   Put(M(i).P3(1));	
+		   Put(M(i).P3(2));	
+		   Put(M(i).P3(3));
+	       Put_Line("");	   
+		end loop;
 		null;
 	end;
 

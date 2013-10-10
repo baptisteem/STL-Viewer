@@ -9,6 +9,8 @@ package STL is
 		P1, P2, P3 : Vecteur(1..3);
 	end record;
 
+	type Etat is (None, Prem, Deux);	
+
 	type Tableau_Facette is array(positive range<>) of Facette;
 
 	type Maillage is access Tableau_Facette;
