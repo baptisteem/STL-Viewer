@@ -45,7 +45,8 @@ package body STL is
 				une_facette : Facette;
 			begin
 				-- On decoupe la chaine grâce au espaces
-				GNAT.String_Split.Create(subs_lignes,ligne,separateur,Mode => GNAT.String_Split.Multiple);						if GNAT.String_Split.Slice(subs_lignes, 2) = "vertex" then
+				GNAT.String_Split.Create(subs_lignes,ligne,separateur,Mode => GNAT.String_Split.Multiple);						
+				if GNAT.String_Split.Slice(subs_lignes, 2) = "vertex" then
 					if pos = None then
 						-- On ajoute les valeurs à chaque points de la facette
 						une_facette.P1 := (Float'Value(GNAT.String_Split.Slice(subs_lignes,3)),

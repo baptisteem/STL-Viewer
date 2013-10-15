@@ -31,7 +31,15 @@ package body Algebre is
 		Resultat : Vecteur(1..2);
 	begin
 		-- a faire
+	    
+		if A(3)+C(3) = 0.0 then
+			Resultat(1) := -E(1);
+			Resultat(2) := -E(2);
+		elsif A(3)+C(3) > 0.0 then
+			Resultat(1) := (E(3)/(A(3)+C(3)))*A(1)-E(1);
+			Resultat(2) := (E(3)/(A(3)+C(3)))*A(2)-E(2);
+		end if;
+
 		return Resultat;
 	end;
-
 end;
