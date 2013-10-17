@@ -1,4 +1,3 @@
-
 with SDL.Types; use SDL.Types;
 
 package Dessin is

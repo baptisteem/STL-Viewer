@@ -12,7 +12,7 @@ package body Scene is
 	Theta : Float := 0.0; -- rotation autour de Y
 	Phi : Float := 0.0; -- rotation autour de Z
 
-	E : Vecteur(1..3) := (-400.0, -300.0, 200.0); -- position du spectateur
+	E : Vecteur(1..3) := (-400.0, -300.0, 400.0); -- position du spectateur
 	T : Matrice(1..3, 1..3); -- matrice de rotation
 
 	M : Maillage;
@@ -23,15 +23,20 @@ package body Scene is
 	end Modification_Matrice_Rotation;
 
 	function Position_Camera return Vecteur is
-		Position : Vecteur(1..3);
+		Position : Vecteur(1..3) := (0.0,0.0,-R);
+		Angles : Vecteur(1..3) := (Rho,Theta,Phi);
 	begin
 		-- a faire
+		Position := Matrice_Rotations(Angles) * Position;
 		return Position;
 	end;
 
 	procedure Projection_Facette(Index_Facette : Positive ; P1, P2, P3 : out Vecteur) is
-		C : Vecteur(1..3) := (0.0,0.0,R);
+		C : Vecteur(1..3);
+		Angles : Vecteur(1..3) := (Rho,Theta,Phi);
 	begin
+		C := Position_Camera;
+		T := Matrice_Rotations_Inverses(Angles);
 		P1 := Projection(M(Index_Facette).P1,C,E,T);
 		P2 := Projection(M(Index_Facette).P2,C,E,T);
 		P3 := Projection(M(Index_Facette).P3,C,E,T);
@@ -71,7 +76,15 @@ package body Scene is
 	procedure Modification_Coordonnee_Camera(Index : Positive ; Increment : Float) is
 	begin
 		-- a faire
-		null;
+		if Index = 1 then
+			R := R + Increment;
+		elsif Index = 2 then
+		   	Rho := Rho + Increment;
+		elsif Index = 3 then
+			Theta := Theta + Increment;
+		elsif Index = 4 then
+			Phi := Phi + Increment;
+		end if;
 	end;
 
 begin

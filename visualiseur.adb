@@ -108,6 +108,7 @@ begin
 
 				--handle all different keys
 				if e.the_type = Ev.KEYDOWN then
+					Clean_Screen;
 					case e.key.keysym.sym is
 							-- on quitte sur la touche 'echappement'
 						when SDL.Keysym.K_ESCAPE =>
