@@ -131,6 +131,10 @@ begin
 							Scene.Modification_Coordonnee_Camera(1, 5.0);
 						when SDL.Keysym.K_PAGEDOWN =>
 							Scene.Modification_Coordonnee_Camera(1, -5.0);
+						when SDL.Keysym.K_P =>
+							Scene.Modification_Luminosite(2);
+						when SDL.Keysym.K_M =>
+							Scene.Modification_Luminosite(1);
 						when others =>
 							null;
 					end case;

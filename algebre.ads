@@ -4,7 +4,8 @@ package Algebre is
 	-- ainsi que des matrices
 	type Vecteur is array(Positive range<>) of Float;
 	type Matrice is array(Positive range<>, Positive range<>) of Float;
-
+	type Byte is mod 2 ** 8 ; for Byte'Size use 8;
+	type Double_Byte is mod 2 ** 16; for Double_Byte'Size use 16;
 	-- nous definissons maintenant 2 fonctions realisons les calculs de 3D
 	-- pour plus de details, voir la documentation fournie ou
 	-- see http://en.wikipedia.org/wiki/3D_projection#Perspective_projection

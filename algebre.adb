@@ -63,7 +63,7 @@ package body Algebre is
 	function Projection(A, C, E : Vecteur ; T : Matrice) return Vecteur is
 		Resultat : Vecteur(1..2);
 		D : Vecteur(1..3) := (A(1)-C(1),A(2)-C(2),A(3)-C(3));
-	begin
+		begin
 		-- a faire
 	    
 		D := T * D;

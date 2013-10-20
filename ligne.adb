@@ -1,10 +1,12 @@
 with Dessin;
+with Algebre;
 use Dessin;
+use Algebre;
 
 package body Ligne is
 	--code entierement repris de wikipedia
 	--https://fr.wikipedia.org/wiki/Algorithme_de_trac%C3%A9_de_segment_de_Bresenham#Algorithme_g.C3.A9n.C3.A9ral_optimis.C3.A9
-	procedure Tracer_Segment(xa, ya, xb, yb : Natural) is
+	procedure Tracer_Segment(xa, ya, xb, yb : Natural; couleur : Byte) is
 		dx, dy : Integer;
 		e : Integer;
 		x1 : Natural := xa;
@@ -25,7 +27,7 @@ package body Ligne is
 							e := dx;
 							dx := e * 2 ; dy := dy * 2 ;  -- e est positif
 							loop  -- déplacements horizontaux
-								Trace_Pixel(x1, y1) ;
+								Fixe_Pixel(x1, y1, couleur) ;
 								x1 := x1 + 1;
 								exit when x1 = x2 ;
 								e := e - dy;
@@ -39,7 +41,7 @@ package body Ligne is
 							e := dy;
 							dy := e * 2 ; dx := dx * 2 ;  -- e est positif
 							loop  -- déplacements verticaux
-								Trace_Pixel(x1, y1) ;
+								Fixe_Pixel(x1, y1, couleur) ;
 								y1 := y1 + 1;
 								exit when y1 = y2 ;
 								e := e - dx;
@@ -58,7 +60,7 @@ package body Ligne is
 							e := dx;
 							dx := e * 2 ; dy := dy * 2 ;  -- e est positif
 							loop  -- déplacements horizontaux
-								Trace_Pixel(x1, y1) ;
+								Fixe_Pixel(x1, y1, couleur) ;
 								x1 := x1 + 1;
 								exit when x1 = x2 ;
 								e := e + dy;
@@ -71,7 +73,7 @@ package body Ligne is
 							e := dy;
 							dy := e * 2 ; dx := dx * 2 ;  -- e est négatif
 							loop  -- déplacements verticaux
-								Trace_Pixel(x1, y1) ;
+								Fixe_Pixel(x1, y1, couleur) ;
 								y1 := y1 - 1;
 								exit when y1 = y2 ;
 								e := e + dx;
@@ -87,7 +89,7 @@ package body Ligne is
 
 					-- vecteur horizontal vers la droite
 					loop
-						Trace_Pixel(x1, y1) ;
+						Fixe_Pixel(x1, y1, couleur) ;
 						x1 := x1 + 1;
 						exit when x1 = x2 ;
 					end loop;
@@ -104,7 +106,7 @@ package body Ligne is
 							e := dx;
 							dx := e * 2 ; dy := dy * 2 ;  -- e est négatif
 							loop  -- déplacements horizontaux
-								Trace_Pixel(x1, y1) ;
+								Fixe_Pixel(x1, y1, couleur) ;
 								x1 := x1 - 1;
 								exit when x1 = x2 ;
 								e := e + dy;
@@ -118,7 +120,7 @@ package body Ligne is
 							e := dy;
 							dy := e * 2 ; dx := dx * 2 ;  -- e est positif
 							loop  -- déplacements verticaux
-								Trace_Pixel(x1, y1) ;
+								Fixe_Pixel(x1, y1, couleur) ;
 								y1 := y1 + 1;
 								exit when y1 = y2 ;
 								e := e + dx;
@@ -137,7 +139,7 @@ package body Ligne is
 							e := dx;
 							dx := e * 2 ; dy := dy * 2 ;  -- e est négatif
 							loop  -- déplacements horizontaux
-								Trace_Pixel(x1, y1) ;
+								Fixe_Pixel(x1, y1, couleur) ;
 								x1 := x1 - 1;
 								exit when x1 = x2 ;
 								e := e - dy;
@@ -150,7 +152,7 @@ package body Ligne is
 							e := dy;
 							dy := e * 2 ; dx := dx * 2 ;  -- e est négatif
 							loop  -- déplacements verticaux
-								Trace_Pixel(x1, y1) ;
+								Fixe_Pixel(x1, y1, couleur) ;
 								y1 := y1 - 1;
 								exit when y1 = y2 ;
 								e := e - dx;
@@ -166,7 +168,7 @@ package body Ligne is
 
 					-- vecteur horizontal vers la gauche
 					loop
-						Trace_Pixel(x1, y1) ;
+						Fixe_Pixel(x1, y1, couleur) ;
 						x1 := x1 - 1;
 						exit when x1 = x2 ;
 					end loop;
@@ -180,7 +182,7 @@ package body Ligne is
 
 					-- vecteur vertical croissant
 					loop
-						Trace_Pixel(x1, y1) ;
+						Fixe_Pixel(x1, y1, couleur) ;
 						y1 := y1 + 1;
 						exit when y1 = y2 ;
 					end loop;
@@ -189,7 +191,7 @@ package body Ligne is
 
 					-- vecteur vertical décroissant
 					loop
-						Trace_Pixel(x1, y1) ;
+						Fixe_Pixel(x1, y1, couleur) ;
 						y1 := y1 - 1;
 						exit when y1 = y2 ;
 					end loop;

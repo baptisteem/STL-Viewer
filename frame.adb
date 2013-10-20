@@ -16,6 +16,7 @@ use Ada.Text_IO;
 package body Frame is
 
 	procedure Calcul_Image is
+		couleur : Byte := Valeur_Luminosite;
 	begin
 		-- a faire : calcul des projections, affichage des triangles
 		for i in 1..Nombre_De_Facettes loop
@@ -26,25 +27,16 @@ package body Frame is
 				--On verifie que tous les points sont dans l'ecran
 				if Integer(P1(1)) in 1..SCRW and Integer(P1(2)) in 1..SCRH
 			   and Integer(P2(1)) in 1..SCRW and Integer(P2(2)) in 1..SCRH	then
-					Tracer_Segment(Integer(P1(1)),Integer(P1(2)),Integer(P2(1)),Integer(P2(2)));
+					Tracer_Segment(Integer(P1(1)),Integer(P1(2)),Integer(P2(1)),Integer(P2(2)),couleur);
 				end if;
 				if Integer(P2(1)) in 1..SCRW and Integer(P2(2)) in 1..SCRH
 			   and Integer(P3(1)) in 1..SCRW and Integer(P3(2)) in 1..SCRH	then
-					Tracer_Segment(Integer(P2(1)),Integer(P2(2)),Integer(P3(1)),Integer(P3(2)));
+					Tracer_Segment(Integer(P2(1)),Integer(P2(2)),Integer(P3(1)),Integer(P3(2)),couleur);
 				end if;
 				if Integer(P1(1)) in 1..SCRW and Integer(P1(2)) in 1..SCRH
 			   and Integer(P3(1)) in 1..SCRW and Integer(P3(2)) in 1..SCRH	then
-					Tracer_Segment(Integer(P3(1)),Integer(P3(2)),Integer(P1(1)),Integer(P1(2)));
+					Tracer_Segment(Integer(P3(1)),Integer(P3(2)),Integer(P1(1)),Integer(P1(2)),couleur);
 				end if;
-			--	Put(P1(1));
-			--	Put(P1(2));
-			--	Put_Line("");
-			--	Put(P2(1));
-			--	Put(P2(2));
-			--	Put_Line("");
-			--	Put(P3(1));
-			--	Put(P3(2));
-			--	Put_Line("");
 			end;
 		end loop;
 		null;

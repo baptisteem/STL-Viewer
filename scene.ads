@@ -33,4 +33,13 @@ package Scene is
 	-- 4 modifie phi
 	-- et l'Increment est la valeur a ajouter
 	procedure Modification_Coordonnee_Camera(Index : Positive ; Increment : Float);
+
+	--mise a jour de la luminosite
+	-- Valeur = 1  : Baisse la luminositer
+	-- Valeur = 2  : Augmente la luminositer
+	procedure Modification_Luminosite(Valeur : Integer);
+
+	--retourne la valeur de la luminosite
+	function Valeur_Luminosite return Byte;
+
 end;

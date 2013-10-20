@@ -7,15 +7,32 @@ use Ada.Float_Text_IO;
 
 package body Scene is
 
+	Luminosite : Byte := 255;
+
 	R : Float := 50.0; -- coordonnee Z initiale de la camera
 	Rho : Float := 0.0; -- rotation autour de X
 	Theta : Float := 0.0; -- rotation autour de Y
 	Phi : Float := 0.0; -- rotation autour de Z
 
-	E : Vecteur(1..3) := (-400.0, -300.0, 400.0); -- position du spectateur
+	E : Vecteur(1..3) := (-400.0, -300.0, 100.0); -- position du spectateur
 	T : Matrice(1..3, 1..3); -- matrice de rotation
 
 	M : Maillage;
+
+	procedure Modification_Luminosite(Valeur : Integer) is
+		coeff : Byte := 3; --permet de savoir de combien on modifie la luminosite
+	begin
+		if Valeur = 1 and Luminosite-coeff > 0 then
+			Luminosite := Luminosite - coeff;
+		elsif Valeur = 2 and Luminosite+coeff < 255 then
+			Luminosite := Luminosite + coeff;
+		end if;
+	end;
+
+	function Valeur_Luminosite return Byte is
+	begin
+		return Luminosite;
+	end;
 
 	procedure Modification_Matrice_Rotation is
 	begin
