@@ -78,11 +78,6 @@ package body STL is
 	end;
 
 	function Chargement_Binaire(Nom_Fichier : String) return Maillage is
-		
-		--On définit un type byte(8bits) et double_byte(16bits)
-		--type Byte is mod 2 ** 8; for Byte'Size use 8;
-		--type Double_Byte is mod 2 ** 16; for Double_Byte'Size use 16;
-		
 		--On définit un type triangle
 		type Triangle is
 			record
@@ -138,7 +133,6 @@ package body STL is
 				une_facette : Facette;
 			begin
 				Triangle_IO.read(Triangle_File, Triangle_Data);
-				--Put(Triangle_Data.Byte_Count);
 				une_facette.P1 := Triangle_Data.P1;
 				une_facette.P2 := Triangle_Data.P2;
 				une_facette.P3 := Triangle_Data.P3;

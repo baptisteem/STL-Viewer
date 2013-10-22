@@ -57,8 +57,12 @@ begin
 		Set_Exit_Status(Failure);
 		return;
 	end if;
-	Scene.Ajout_Maillage(Chargement_ASCII(Argument(1)));
 
+	case Test_Fichier(Argument(1)) is
+		when Ascii_File => Scene.Ajout_Maillage(Chargement_ASCII(Argument(1)));
+		when Binaire_File => Scene.Ajout_Maillage(Chargement_Binaire(Argument(1)));
+	    when others => GNAT.OS_Lib.OS_Exit(1);
+	end case;
 
 	-- on continue en initialisant l'affichage
 	for I in cmap'Range loop

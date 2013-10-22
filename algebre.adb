@@ -21,37 +21,47 @@ package body Algebre is
 		return M ;
 	end;
 
-
-
 	function Matrice_Rotations(Angles : Vecteur) return Matrice is
 		Rotation : Matrice(1..3, 1..3);
 		Rx,Ry,Rz : Matrice(1..3,1..3);
 	begin
-		-- a faire
-		Rx := ((1.0,0.0,0.0),(0.0,cos(Angles(1)),-sin(Angles(1))),(0.0,sin(Angles(1)),cos(Angles(1))));
-		Ry := ((cos(Angles(2)),0.0,sin(Angles(1))),(0.0,1.0,0.0),(-sin(Angles(2)),0.0,cos(Angles(2))));
-		Rz := ((cos(Angles(3)),-sin(Angles(3)),0.0),(sin(Angles(3)),cos(Angles(3)),0.0),(0.0,0.0,1.0));
-		Rotation := Rz * Ry * Rx ;
+		Rx :=   ((1.0,0.0,0.0),
+				(0.0,cos(Angles(1)),-sin(Angles(1))),
+				(0.0,sin(Angles(1)),cos(Angles(1))));
+		Ry := ((cos(Angles(2)),0.0,-sin(Angles(2))),
+				(0.0,1.0,0.0),
+				(sin(Angles(2)),0.0,cos(Angles(2))));
+		Rz := ((cos(Angles(3)),-sin(Angles(3)),0.0),
+				(sin(Angles(3)),cos(Angles(3)),0.0),
+				(0.0,0.0,1.0));
+		Rotation := Rx;
+		Rotation := Ry * Rotation;
+		Rotation := Rz * Rotation;
 		return Rotation;
 	end;
 
 	function Matrice_Rotations_Inverses(Angles : Vecteur) return Matrice is
 		Rx,Ry,Rz : Matrice(1..3, 1..3);
 		Rotation : Matrice(1..3, 1..3);
-		--Angles_Inverses : Vecteur (1..3) := (-Angles(1),-Angles(2),-Angles(3));
 	begin 
-		Rx:=((1.0,0.0,0.0),(0.0,cos(-Angles(1)),-sin(-Angles(1))),(0.0,sin(-Angles(1)),cos(-Angles(1))));
-		Ry:=((cos(-Angles(2)),0.0,sin(-Angles(2))),(0.0,1.0,0.0),(-sin(-Angles(2)),0.0,cos(-Angles(2))));
-		Rz:=((cos(-Angles(3)),-sin(-Angles(3)),0.0),(sin(-Angles(3)),cos(-Angles(3)),0.0),(0.0,0.0,1.0));
-		Rotation:=Rx * Ry * Rz;
-		--return Matrice_Rotations(Angles_Inverses);
+		Rx:=((1.0,0.0,0.0),
+			(0.0,cos(-Angles(1)),-sin(-Angles(1))),
+			(0.0,sin(-Angles(1)),cos(-Angles(1))));
+		Ry:=((cos(-Angles(2)),0.0,-sin(-Angles(2))),
+			(0.0,1.0,0.0),
+			(sin(-Angles(2)),0.0,cos(-Angles(2))));
+		Rz:=((cos(-Angles(3)),-sin(-Angles(3)),0.0),
+			(sin(-Angles(3)),cos(-Angles(3)),0.0),
+			(0.0,0.0,1.0));
+		Rotation := Rz;
+		Rotation := Ry * Rotation;
+		Rotation := Rx * Rotation;
 		return Rotation;
 	end;
 
 	function "*" (X : Matrice ; Y : Vecteur) return Vecteur is
 		Z : Vecteur(X'Range(1)) := (0.0,0.0,0.0);
 	begin
-		-- a faire
 		for i in 1..3 loop
 			for j in 1..3 loop
 				Z(i) := Z(i) + X(i,j)*Y(j);
@@ -64,14 +74,9 @@ package body Algebre is
 		Resultat : Vecteur(1..2);
 		D : Vecteur(1..3) := (A(1)-C(1),A(2)-C(2),A(3)-C(3));
 		begin
-		-- a faire
-	    
 		D := T * D;
 
-		if D(3) = 0.0 then
-			Resultat(1) := -E(1);
-			Resultat(2) := -E(2);
-		elsif D(3) > 0.0 then
+		if D(3) > 0.1 then
 			Resultat(1) := (E(3)/D(3))*D(1)-E(1);
 			Resultat(2) := (E(3)/D(3))*D(2)-E(2);
 		end if;

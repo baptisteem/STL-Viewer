@@ -7,20 +7,21 @@ use Ada.Float_Text_IO;
 
 package body Scene is
 
-	Luminosite : Byte := 255;
+
+	Luminosite : Byte := 250;
 
 	R : Float := 50.0; -- coordonnee Z initiale de la camera
 	Rho : Float := 0.0; -- rotation autour de X
 	Theta : Float := 0.0; -- rotation autour de Y
 	Phi : Float := 0.0; -- rotation autour de Z
 
-	E : Vecteur(1..3) := (-400.0, -300.0, 100.0); -- position du spectateur
+	E : Vecteur(1..3) := (-400.0, -300.0, 400.0); -- position du spectateur
 	T : Matrice(1..3, 1..3); -- matrice de rotation
 
 	M : Maillage;
 
 	procedure Modification_Luminosite(Valeur : Integer) is
-		coeff : Byte := 3; --permet de savoir de combien on modifie la luminosite
+		coeff : Byte := 5; --permet de savoir de combien on modifie la luminosite
 	begin
 		if Valeur = 1 and Luminosite-coeff > 0 then
 			Luminosite := Luminosite - coeff;
@@ -43,7 +44,6 @@ package body Scene is
 		Position : Vecteur(1..3) := (0.0,0.0,-R);
 		Angles : Vecteur(1..3) := (Rho,Theta,Phi);
 	begin
-		-- a faire
 		Position := Matrice_Rotations(Angles) * Position;
 		return Position;
 	end;
@@ -62,23 +62,7 @@ package body Scene is
 
 	procedure Ajout_Maillage(Ma : Maillage) is
 	begin
-		-- a faire
 		M := Ma;
-		--Pour debugage -->
-		--for i in 1..M'Length loop
-		--   Put(M(i).P1(1));
-		--   Put(M(i).P1(2));	
-		--   Put(M(i).P1(3));
-		--   Put_Line("");	   
-		--   Put(M(i).P2(1));	
-		--   Put(M(i).P2(2));	
-		--   Put(M(i).P2(3));
-		--   Put_Line("");	   
-		--   Put(M(i).P3(1));	
-		--   Put(M(i).P3(2));	
-		--   Put(M(i).P3(3));
-	    --   Put_Line("");	   
-	    --end loop;
 		null;
 	end;
 
@@ -86,13 +70,11 @@ package body Scene is
 		N : Natural;
 	begin
 		N := M'Length;
-		-- a faire
 		return N;
 	end;
 
 	procedure Modification_Coordonnee_Camera(Index : Positive ; Increment : Float) is
 	begin
-		-- a faire
 		if Index = 1 then
 			R := R + Increment;
 		elsif Index = 2 then
